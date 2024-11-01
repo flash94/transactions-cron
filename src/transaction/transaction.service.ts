@@ -61,8 +61,9 @@ export class TransactionService {
     // Cron job
     @Cron(CronExpression.EVERY_HOUR)
     async findByLessThanAmountHourly(): Promise<void> {
-        const amountLimit = 300;
+        const amountLimit = 500;
         const transactions = await this.getTransactionsBelowAmount(amountLimit);
         this.logger.log(`Found ${transactions.length} transactions below ${amountLimit}.`);
+        this.logger.log(transactions);
     }
 }
